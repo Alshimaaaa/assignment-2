@@ -9,16 +9,16 @@
 using namespace std;
 static void asteriskPattern(int n , int i){
     if(n==0){return;}
-    asteriskPattern(n/2,i);
+    asteriskPattern(n/2,i); //The upper half of every n.
     for (int j=0;j<i;j++){
-        cout<<"  ";
+        cout<<"  "; //Shifted astrisks by the value i.
     }
     for(int j=0;j<n;j++)
     {
-        cout<<"* ";
+        cout<<"* "; //n astrisks (The main part).
     }
     cout<<"\n";
-    asteriskPattern(n/2,i+n/2);
+    asteriskPattern(n/2,i+n/2); //The lower part of every n. 
 }
 
 int main(){
