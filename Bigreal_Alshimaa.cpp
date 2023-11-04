@@ -239,49 +239,13 @@ bool BigReal::operator> (BigReal anotherNum){
         }
     }
     else if(this->sign == '-' && anotherNum.sign == '-'){
-        // If both are negative then the greater number is actually the smaller number because of the sign.
-        int intSize1 = this->integer.size() , intSize2 = anotherNum.integer.size();
-        int frSize1 = this->fraction.size() , frSize2 = anotherNum.fraction.size();
-        if(intSize1 > intSize2){
-            // If the number of digits in the first is more than the second then it's smaller.
-            return false;
-        }
-        else if(intSize1 < intSize2){
-            // The second has more numbers.
-            return true;
-        }
-        else{
-            // The first and the second have same number of digits.
-            for(int i=0 ; i<intSize1 ; i++){
-                if(this->integer[i]-'0' > anotherNum.integer[i]-'0'){
-                    // If there is one digit greater than the second number's digit
-                    // then it's the smaller number because of the sign.
-                    return false;
-                }
-                else if(this->integer[i]-'0' < anotherNum.integer[i]-'0'){
-                    return true;
-                }
-            }
-        }
-        // The two numbers have the same integer value.
-        // Start comparing the fraction part.
-        int mn= min(frSize1, frSize2);
-        for(int i=0 ; i<mn ; i++){
-            // Compare the common part and the one with greater digit is the smaller.
-            if(this->fraction[i]-'0' > anotherNum.fraction[i]-'0'){
-                return false;
-            }
-            else if(this->fraction[i]-'0' < anotherNum.fraction[i]-'0'){
-                return true;
-            }
-        }
-        // If the common part is identical then the one with extra digits is greater.
-        if(frSize1>frSize2){
-            return false;
-        }
-        else if(frSize1 < frSize2){
-            return true;
-        }
+        // If the signs are both negative we copy the numbers in another two big reals with positive signs.
+        BigReal num1, num2;
+        num1= *this, num2=anotherNum;
+        num1.sign='+',num2.sign='+';
+        // And compare between them using the smaller than operator 
+        // like multiplying all the equation by -1 so the operator is inversed.
+        return (num1< num2);
     }
     return false;// Equal numbers.
 }
@@ -337,45 +301,13 @@ bool BigReal::operator< (BigReal anotherNum){
         }
     }
     else if(this->sign == '-' && anotherNum.sign == '-'){
-        int intSize1 = this->integer.size() , intSize2 = anotherNum.integer.size();
-        int frSize1 = this->fraction.size() , frSize2 = anotherNum.fraction.size();
-        if(intSize1 > intSize2){
-            return true;
-        }
-        else if(intSize1 < intSize2){
-            return false;
-        }
-        else{
-            for(int i=0 ; i<intSize1 ; i++){
-                // If there is one digit smaller than the second number's digit
-                // then it's the greater number because of the negative sign.
-                if(this->integer[i]-'0' > anotherNum.integer[i]-'0'){
-                    return true;
-                }
-                else if(this->integer[i]-'0' < anotherNum.integer[i]-'0'){
-                    return false;
-                }
-            }
-        }
-        // The two numbers have the same integer value.
-        // Start comparing the fraction part.
-        int mn= min(frSize1, frSize2);
-        for(int i=0 ; i<mn ; i++){
-            // Compare the common part and the one with smaller digit is the big one.
-            if(this->fraction[i]-'0' > anotherNum.fraction[i]-'0'){
-                return true;
-            }
-            else if(this->fraction[i]-'0' < anotherNum.fraction[i]-'0'){
-                return false;
-            }
-        }
-        // If the common part is identical then the one with less digits is greater.
-        if(frSize1>frSize2){
-            return true;
-        }
-        else if(frSize1 < frSize2){
-            return false;
-        }
+        // If the signs are both negative we copy the numbers in another two big reals with positive signs.
+        BigReal num1, num2;
+        num1= *this, num2=anotherNum;
+        num1.sign='+',num2.sign='+';
+        // And compare between them using the bigger than operator. 
+        // Like multiplying all the equation by -1 so the operator is inversed.
+        return (num1> num2);
     }
 
     return false;// Equal numbers.
