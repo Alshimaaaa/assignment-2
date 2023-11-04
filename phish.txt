@@ -1,0 +1,11 @@
+Dear Customer,
+
+We have noticed suspicious activity on your account. For security reasons, we urgently require you to verify your account information. Failure to do so within 48 hours may result in your account access being temporarily suspended.
+
+To proceed with the verification process, please click on the following link: [fake phishing link]
+
+Please note that this is an important notice and immediate action is required on your part. We take the security of your account seriously and appreciate your prompt attention to this matter.
+
+If you have any concerns or questions, please do not hesitate to contact our customer support team.
+
+Thank you for your cooperation.
