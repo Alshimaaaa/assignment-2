@@ -176,23 +176,23 @@ ostream& operator << (ostream& out, BigReal number) {
     // Arrange the number content and print it.
     if(number.integer=="0" && number.fraction=="0"){
         // Cout the zero with no signs or fraction.
-        out<<"0\n";
+        out<<"0";
     }
     else if(number.fraction=="0" && number.sign=='+'){
         // No fraction part and sign is positive then just return the integer part.
-        out<<number.integer<< '\n';
+        out<<number.integer;
     }
     else if(number.fraction=="0" && number.sign=='-'){
         // The integer part with the negative sign.
-        out<<number.sign<<number.integer<< '\n';
+        out<<number.sign<<number.integer;
     }
     else if(number.sign=='+'){
         // Return the number without the positive sign.
-        out << number.integer << '.' << number.fraction << '\n';
+        out << number.integer << '.' << number.fraction ;
     }
     else{
         // Return the full number
-        out << number.sign << number.integer << '.' << number.fraction << '\n';
+        out << number.sign << number.integer << '.' << number.fraction;
     }
     return out;
 }
