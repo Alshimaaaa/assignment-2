@@ -172,12 +172,31 @@ void BigReal::setNum (string potentialNum) {
     }
 }
 
-
 ostream& operator << (ostream& out, BigReal number) {
     // Arrange the number content and print it.
-    out << number.sign << number.integer << '.' << number.fraction << '\n';
+    if(number.integer=="0" && number.fraction=="0"){
+        // Cout the zero with no signs or fraction.
+        out<<"0\n";
+    }
+    else if(number.fraction=="0" && number.sign=='+'){
+        // No fraction part and sign is positive then just return the integer part.
+        out<<number.integer<< '\n';
+    }
+    else if(number.fraction=="0" && number.sign=='-'){
+        // The integer part with the negative sign.
+        out<<number.sign<<number.integer<< '\n';
+    }
+    else if(number.sign=='+'){
+        // Return the number without the positive sign.
+        out << number.integer << '.' << number.fraction << '\n';
+    }
+    else{
+        // Return the full number
+        out << number.sign << number.integer << '.' << number.fraction << '\n';
+    }
     return out;
 }
+
 
 bool BigReal::operator== (BigReal anotherNum) {
     //It will return true if the three conditions happen.
