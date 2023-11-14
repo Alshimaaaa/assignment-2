@@ -195,6 +195,11 @@ public:
     }
 
     void execute(int instructionData[3]){
+        //instructionData consists of:
+        //index0 : op code
+        //index1 : register index
+        //index2 : operand
+        
         //select the operation according to the op-code
         switch (instructionData[0]) {
             case 1:
