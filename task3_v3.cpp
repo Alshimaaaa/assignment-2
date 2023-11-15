@@ -2,8 +2,6 @@
 
 using namespace std;
 
-
-
 //class to handle the memory by making a vector of all memory cells.
 class Memory{
 private:
@@ -73,25 +71,44 @@ class Register{
 //class that have all the functions
 class Operation{
 public:
+    static string decInt_to_hexString(int no){
+        string res;
+        stringstream ss(res);
+        ss<<uppercase<<hex<<no;
+        ss>>res;
+        if(res.size()==1){
+            res.insert(res.begin(),'0');
+        }
+        else{
+            res= res.substr(res.size()-2,2);
+        }
+        return res;
+    }
     static void Op1(Memory& mem, vector <Register> &reg, int regNo, int memNo){
         //The first function that load from memory to the register.
         string value = mem.getValue(memNo);
         reg[regNo].setReg(value);
     }
-    static void Op2(Register& reg , int value){
+    static void Op2(vector <Register> &reg , int regNo,int memNo){
         //The second function that load the value to the register.
-        reg.setReg(value);
-        cout<<value<<'\n';
+        string value = decInt_to_hexString(memNo);
+        reg[regNo].setReg(value);
     }
-    static void Op3(Register& reg, Memory& mem, int location)
+    static void Op3(Memory& mem, vector <Register> &reg,int regNo,int memNo)
     {
-        int x = reg.getReg();
-        mem.setValue(location, x);
+        string value = reg[regNo].getReg();
+        if(memNo==0){
+            cout<<"The value in register "<<regNo<<" equal "<<value<<'\n';//print what is in this register.
+        }
+        else{
+            mem.setValue(memNo, value); //save what is in this register to this memory cell.
+        }
     }
-    static void Op4(Register& reg1, Register& reg2)
+    static void Op4(vector <Register> &reg,int reg1, int reg2)
     {
-        int x = reg1.getReg();
-        reg2.setReg(x);
+        //store what is in reg1 in reg2.
+        string value = reg[reg1].getReg();
+        reg[reg2].setReg(value);
     }
 };
 
@@ -218,7 +235,7 @@ public:
         //index0 : op-code                              op-code R1 R2 R3
         //index1 : register1 index (R1)                 OR
         //index2 : register2 index (R2)                 op-code R1 MC_index/bit_pattern
-        //index3 : register3 index (R3)                 
+        //index3 : register3 index (R3)
         //index4 : memory cell index/bit pattern        !!use the suitable elements according to this guide!!
 
         //select the operation according to the op-code
@@ -227,11 +244,13 @@ public:
                 Operation::Op1(memory, registers, instructionData[1], instructionData[4]);
                 break;
             case 2:
-                Operation::Op2(r[regIndex],operand);
+                Operation::Op2(registers,instructionData[1],instructionData[4]);
                 break;
             case 3:
-                Operation::Op3(r[regIndex], m, operand);
+                Operation::Op3(memory, registers, instructionData[1], instructionData[4]);
                 break;
+            case 4:
+                Operation::Op4(registers,instructionData[2], instructionData[3]);
             case 12:
                 //the machine will stop the cycle
                 return true;
@@ -263,8 +282,6 @@ public:
         }
     }
 };
-
-
 
 int main(){
     cout.setf(std::ios::hex,std::ios::basefield);
