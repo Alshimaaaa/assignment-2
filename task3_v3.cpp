@@ -110,6 +110,15 @@ public:
         string value = reg[reg1].getReg();
         reg[reg2].setReg(value);
     }
+    static void Op5(vector <Register> &reg,int reg1, int reg2, int reg3){
+        string x = reg[reg2].getReg(), y = reg[reg3].getReg();//S and T register values.
+        int num1 = hexString_to_decInt(x),num2= hexString_to_decInt(y);//Turn them to numbers.
+        if(num1>=128)num1-=256;
+        if(num2>=128)num2-=256;//Turn the number to two's complement if its first bit is 1 then it's a negative number.
+        int ans = num1+num2;
+        string value = decInt_to_hexString(ans);
+        reg[reg1].setReg(value);//Save them in the register R.
+    }
 };
 
 
@@ -251,6 +260,8 @@ public:
                 break;
             case 4:
                 Operation::Op4(registers,instructionData[2], instructionData[3]);
+            case 5:
+                Operation::Op5(registers, instructionData[1], instructionData[2], instructionData[3]);
             case 12:
                 //the machine will stop the cycle
                 return true;
