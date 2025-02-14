@@ -4,10 +4,15 @@
 // Version: 1
 
 #include <iostream>
-#include"GameManager.cpp"
-#include"BoardGame_Classes.h"
-#include"RandomPlayer.cpp"
-#include"X_O_Board.cpp"
+
+#include "../original/GameManager.cpp"
+#include "../original/Player.cpp"
+
+#include "BoardGame_Classes_four_in_a_row.h"
+#include "X_O_Board_four_in_a_row.cpp"
+#include "Player_four_in_a_row.cpp"
+#include "RandomPlayer_four_in_a_row.cpp"
+
 using namespace std;
 
 int main() {

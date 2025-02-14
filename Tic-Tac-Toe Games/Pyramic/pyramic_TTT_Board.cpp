@@ -53,7 +53,7 @@ bool Pyramic_TTT_Board::update_board (int x, int y, char symbol) {
 
 bool Pyramic_TTT_Board::is_winner () {
 
-    //The current player wins if there are 3 of the same symbol in a row in the verical column, diagonal to the left, diagonal to the right, or in one of the 4 possible horizontal adjacent cells.
+    //The current player wins if there are 3 of the same symbol in a row in the vertical column, diagonal to the left, diagonal to the right, or in one of the 4 possible horizontal adjacent cells.
     return (is_3_in_a_row(0, 2, "V") || is_3_in_a_row(0, 2, "LD") || is_3_in_a_row(0, 2, "RD") || is_horizontal_win());
 }
 
@@ -96,7 +96,11 @@ bool Pyramic_TTT_Board::game_is_over () {
 
 
 bool Pyramic_TTT_Board::is_3_in_a_row (int rowIndex, int colIndex, string type) {
-    //the tpes passed to the 3rd parameter may be: V: vertical, H: horizontal, LD: left daigonal, or RD: right diagonal
+    //the tpes passed to the 3rd parameter may be:
+    //V: vertical,
+    //H: horizontal,
+    //LD: left daigonal,
+    //or RD: right diagonal
     //in all the types except the H, it's designed that 0, 2 are always the first 2 arguments, respectively.
     int begRowIndex = rowIndex, begColIndex = colIndex;
 

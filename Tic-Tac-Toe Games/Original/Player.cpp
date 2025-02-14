@@ -6,7 +6,8 @@
 #include<random>
 #include<iomanip>
 #include<algorithm>
-#include"BoardGame_Classes.h"
+#include"BoardGame_Classes.hpp"
+
 using namespace std;
 
 // Give player a symbol to use in playing
@@ -41,17 +42,4 @@ string Player::to_string(){
 // Get symbol used by player
 char Player::get_symbol() {
     return symbol;
-}
-
-Connect4_Player::Connect4_Player(char symbol1, int order,char symbol): Player(symbol1){
-    cout << "Welcome player " << order << endl;
-    cout << "Please enter your name: ";
-    cin >> name;
-    this->symbol = symbol;
-}
-
-void Connect4_Player::get_move(int &x, int &y) {
-    //to make the user choose the lowest places
-    cout << "\nPlease enter your move x (0 to 5) and y (0 to 6) separated by spaces(It has to be the lowest possible option): ";
-    cin >> x >> y;
 }

@@ -11,19 +11,36 @@
 // a random computer player.
 
 #include <iostream>
-#include"GameManager.cpp"
-#include"BoardGame_Classes.h"
-#include"RandomPlayer.cpp"
-#include"X_O_Board.cpp"
+
+#include "original/GameManager.cpp"
+
+#include "original/BoardGame_Classes.hpp"
+#include "original/X_O_Board.cpp"
+#include "original/Player.cpp"
+#include "original/RandomPlayer.cpp"
+
+#include "pyramic - 20220016/pyramic_TTT.hpp"
+#include "pyramic - 20220016/pyramic_TTT_Board.cpp"
+#include "pyramic - 20220016/pyramic_TTT_Player.cpp"
+
+#include "four in a row - 20220067/BoardGame_Classes_four_in_a_row.h"
+#include "four in a row - 20220067/X_O_Board_four_in_a_row.cpp"
+#include "four in a row - 20220067/Player_four_in_a_row.cpp"
+#include "four in a row - 20220067/RandomPlayer_four_in_a_row.cpp"
+
+#include "5 x 5 - 20220474/BoardGame_Classes5x5.hpp"
+#include "5 x 5 - 20220474/X_O_Board5x5.cpp"
+#include "5 x 5 - 20220474/Player5x5.cpp"
+
 using namespace std;
 
 int main() {
     cout<<"Welcome to our game app\n";
     cout<<"Please choose the number of the game you want to play:\n"
-          "1- X_O\n"
-          "2- Pyramic Tic_Tac_Toe\n"
-          "3- Four_in_a_row(Connect 4)\n"
-          "4- 5x5 Tic_Tac_Toe\n";
+        "1- X_O\n"
+        "2- Pyramic Tic_Tac_Toe\n"
+        "3- Four_in_a_row(Connect 4)\n"
+        "4- 5x5 Tic_Tac_Toe\n";
     int game;
     cin>>game;
     if(game==1){
@@ -39,7 +56,7 @@ int main() {
             //Player pointer points to child
             players[1] = new RandomPlayer('o', 2);
 
-        GameManager X_O_game (new X_O_Board, players);
+        GameManager X_O_game (new X_O_Board(), players);
         X_O_game.run();
         system ("pause");
     }
@@ -94,7 +111,7 @@ int main() {
             //Player pointer points to child
             players[1] = new Connect4_RandomPlayer('o', 6);
 
-        GameManager Connect4_game (new Connect4_Board, players);
+        GameManager Connect4_game (new Connect4_Board(), players);
         Connect4_game.run();
         system ("pause");
     }
@@ -105,6 +122,7 @@ int main() {
         players[0] = new Player5x5 (1, 'x');
 
         cout << "Welcome to FCAI X-O 5x5 Game. :)\n";
+        cout << "Important Disclaimer: For this game, only the symbol x or o can be declared as a winner, player names being declared as winners is meaningless" << endl;        
         cout << "Press 1 if you want to play with computer: ";
         cin >> choice;
         if (choice != 1)

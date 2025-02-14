@@ -7,14 +7,13 @@
 
 #include <iostream>
 
+#include "../original/GameManager.cpp"
+#include "../original/Player.cpp"
+#include "../original/RandomPlayer.cpp"
+
 #include "pyramic_TTT.hpp"
 #include "pyramic_TTT_Board.cpp"
 #include "pyramic_TTT_Player.cpp"
-
-#include "BoardGame_Classes.hpp"
-#include "GameManager.cpp"
-#include "Player.cpp"
-#include "RandomPlayer.cpp"
 
 using namespace std;
 

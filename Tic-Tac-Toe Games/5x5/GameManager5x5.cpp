@@ -4,7 +4,7 @@
 // Version: 1
 
 #include <iostream>
-#include"../include/BoardGame_Classes5x5.hpp"
+#include"BoardGame_Classes5x5.hpp"
 using namespace std;
 
 GameManager::GameManager(Board* bPtr, Player* playerPtr[2] ) {

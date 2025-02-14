@@ -2,8 +2,11 @@
 // Author:  Mohammad El-Ramly
 // Date:    10/10/2022
 // Version: 1
-#ifndef _BoardGame_CLASSES5x5_H
-#define _BoardGame_CLASSES5x5_H
+#ifndef _BoardGame_CLASSES_H
+#define _BoardGame_CLASSES_H
+
+#include <iostream>
+
 using namespace std;
 
 class Board {
@@ -29,20 +32,6 @@ public:
    virtual bool game_is_over() = 0;
 };
 
-class Board5x5:public Board
-{
-private:
-    //no of x wins and o wins at the end
-    int x_wins, o_wins;
-public:
-    Board5x5();
-    bool update_board (int x, int y, char symbol);
-    bool is_winner();
-    bool is_draw();
-    void display_board();
-    bool game_is_over();
-};
-
 ///////////////////////////////////////////
 // This class represents a 3 x 3 board
 // used in X_O game
@@ -51,7 +40,6 @@ public:
    X_O_Board ();
    bool update_board (int x, int y, char mark);
    void display_board();
-   void show_winner()
    bool is_winner();
    bool is_draw();
    bool game_is_over();
@@ -81,13 +69,6 @@ class Player {
         char get_symbol();
 };
 
-//exactly the same as normal player but asks for a 0 to 4 range
-class Player5x5:public Player
-{
-public:
-    Player5x5 (int order, char symbol);
-    void get_move(int& x, int& y);
-};
 ///////////////////////////////////////////
 // This class represents a random computer player
 // that generates random positions x y (0 to 2)
